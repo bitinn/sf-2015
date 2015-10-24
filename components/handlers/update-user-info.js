@@ -36,7 +36,7 @@ function *middleware(next) {
 
 	var new_profile = yield User.update({
 		uid: this.params.uid
-	}, this.request.body) 
+	}, this.request.body); 
 
 	this.body = {
 		code:200
