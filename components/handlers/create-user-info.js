@@ -56,8 +56,12 @@ function *middleware(next) {
 		, image: body.image
 	});
 
+	var new_profile = yield User.findOne({
+		  uid: body.uid
+	});
+
 	this.body = {
 		code: 200,
-		data : body
+		data : new_profile
 	};
 };
