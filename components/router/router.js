@@ -7,6 +7,8 @@
 
 var api = require('koa-router')();
 
+var getUserInfo = require('../handlers/get-user-info');
+
 module.exports = myRouter;
 
 /**
@@ -23,6 +25,12 @@ function myRouter(app) {
 	api.get('/', function *() {
 		this.body = 'hello world';
 	});
+
+	api.get('/api', function *() {
+		this.body = 'hello world2';
+	});
+
+	api.get('/api/users/:id', getUserInfo());
 
 	app.use(api.routes())
 	app.use(api.allowedMethods());
