@@ -32,7 +32,7 @@ function myRouter(app) {
 	});
 
 	api.get('/api/users/:id', getUserInfo());
-	api.get('/api/users', createUserInfo());
+	api.post('/api/users', createUserInfo());
 
 	app.use(api.routes())
 	app.use(api.allowedMethods());

@@ -29,15 +29,23 @@ function *middleware(next) {
 
 	console.log("check before create user info: " + profile);
 
-	var result = yield User.insert({
-		  uid: this.params.id
-		, name: this.params.name
-		, title: this.params.title
-		, info: this.params.info
-		, location: this.params.location
-		, image: this.params.image
-	});
+	var result;
 
-	console.log("create user info: " + result);
+	if(profile != null){
+		result.ok = 0;
+		result.msg = "user is exist.";
+	}else{
+
+		result = yield User.insert({
+			  uid: this.params.id
+			, name: this.params.name
+			, title: this.params.title
+			, info: this.params.info
+			, location: this.params.location
+			, image: this.params.image
+		});
+
+		console.log("create user info: " + result);
+	}
 	this.body = result;
 };
