@@ -8,6 +8,7 @@
 var api = require('koa-router')();
 
 var getUserInfo = require('../handlers/get-user-info');
+var updateUserInfo = require('../handlers/update-user-info');
 var getRoomInfo = require('../handlers/get-room-info');
 var getRoomUsers = require('../handlers/get-room-users');
 var verifyRoomCode = require('../handlers/verify-room-code');
@@ -32,6 +33,7 @@ function myRouter(app) {
 	});
 
 	api.get('/api/users/:uid', getUserInfo());
+	api.put('/api/users/:uid',updateUserInfo());
 	api.get('/api/rooms/:rid', getRoomInfo());
 	api.post('/api/rooms/:rid/verify', verifyRoomCode());
 	api.get('/api/rooms/:rid/users', getRoomUsers());

@@ -23,7 +23,7 @@ function *middleware(next) {
 	var User = db.col('users');
 
 	var profile = yield User.findOne({
-		uid: this.params.id
+		uid: this.params.uid
 	});
 
 	if (!profile){
@@ -33,10 +33,10 @@ function *middleware(next) {
 		};
 		return;
 	}
-	console.log(this.request.body);
+
 	var new_profile = yield User.update({
-		uid: this.params.id
-	},{$set:{body:this.request.body}}) 
+		uid: this.params.uid
+	}, this.request.body) 
 
 	this.body = {
 		code:200
