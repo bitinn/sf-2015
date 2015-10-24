@@ -7,6 +7,7 @@
 
 var api = require('koa-router')();
 
+var createUserInfo = require('../handlers/create-user-info');
 var getUserInfo = require('../handlers/get-user-info');
 
 module.exports = myRouter;
@@ -31,6 +32,7 @@ function myRouter(app) {
 	});
 
 	api.get('/api/users/:id', getUserInfo());
+	api.get('/api/users', createUserInfo());
 
 	app.use(api.routes())
 	app.use(api.allowedMethods());
