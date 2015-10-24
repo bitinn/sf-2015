@@ -23,26 +23,32 @@ function *middleware(next) {
 	var db = this.db;
 	var User = db.col('users');
 
-	//console.dir(this);
-	console.log("------------");
-	console.dir(this.request.body);
+	var body = this.request.body;
+
+	console.dir(body);
+	if(body.uid == undefined || body == null){
+		console.log("body is null.");
+		var result = {ok:"0", msg: "invalid request"};
+		this.body = result;
+		return;
+	}
+
 	var profile = yield User.findOne({
-		uid: this.params.id
+		uid: body.uid
 	});
-	console.log("------------");
 
 	console.log("check before create user info: " + profile);
 	console.dir(profile);
 
 
-	if(profile.uid == null || profile.uid == "null" || profile.uid == "undefined"){
+	if(profile == null || profile.uid == null){
 		var result = yield User.insert({
-			  uid: this.params.id
-			, name: this.params.name
-			, title: this.params.title
-			, info: this.params.info
-			, location: this.params.location
-			, image: this.params.image
+			  uid: body.uid
+			, name: body.name
+			, title: body.title
+			, info: body.info
+			, location: body.location
+			, image: body.image
 		});
 
 		console.log("create user info: " + result);
