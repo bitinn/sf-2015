@@ -26,26 +26,27 @@ function *middleware(next) {
 		uid: this.params.uid
 	});
 
-	if (!profile){
+	if (!profile) {
 		this.status = 404;
 		this.body = {
-		code:404
-		,messge:"user not find"
+			code: 404
+			, message: 'user not found'
 		};
 		return;
 	}
 
 	delete this.request.body.uid;
+
 	yield User.update({
 		uid: this.params.uid
-	}, this.request.body); 
+	}, this.request.body);
 
 	var new_profile = yield User.findOne({
 		uid: this.params.uid
 	});
 
 	this.body = {
-		code:200
-		,data:new_profile
+		code: 200
+		, data: new_profile
 	};
 };
