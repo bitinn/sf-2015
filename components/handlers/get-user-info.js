@@ -26,5 +26,9 @@ function *middleware(next) {
 		uid: this.params.uid
 	});
 
-	this.body = profile;
+	this.body = {
+		code: 200
+		, message: ''
+		, data: profile
+	};
 };

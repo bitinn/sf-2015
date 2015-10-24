@@ -26,5 +26,9 @@ function *middleware(next) {
 		rid: this.params.rid
 	});
 
-	this.body = profile;
+	this.body = {
+		code: 200
+		, message: ''
+		, data: profile
+	};
 };
