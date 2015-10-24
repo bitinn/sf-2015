@@ -24,6 +24,12 @@ function *middleware(next) {
 
 	var rooms = yield Room.find();
 
+	rooms = rooms.map(function (r) {
+		delete r['_id'];
+		delete r.code;
+		return r;
+	});
+
 	this.body = {
 		code: 200
 		, data: rooms

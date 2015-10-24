@@ -22,12 +22,36 @@ function *middleware(next) {
 	var db = this.db;
 	var Room = db.col('rooms');
 
+	var body = this.request.body;
+
+	if (!body || !body.rid || !body.code) {
+		this.status = 400;
+		this.body = {
+			code: 400
+			, message: 'request invalid'
+		};
+		return;
+	}
+
+	var profile = yield Room.findOne({
+		rid: this.request.body.rid
+	});
+
+	if (profile) {
+		this.status = 409;
+		this.body = {
+			code: 409
+			, message: 'room id already exists'
+		};
+		return;
+	}
+
 	yield Room.insert({
 		rid: this.request.body.rid
 		, code: this.request.body.code
 	});
 
-	var profile = yield Room.findOne({
+	profile = yield Room.findOne({
 		rid: this.request.body.rid
 	});
 
