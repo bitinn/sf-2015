@@ -18,6 +18,8 @@ var exitRoom = require('../handlers/exit-room');
 var getRooms = require('../handlers/get-rooms');
 var createRoom = require('../handlers/create-room');
 var updateRoom = require('../handlers/update-room');
+var createPoke = require('../handlers/create-poke');
+var cancelPoke = require('../handlers/cancel-poke');
 
 module.exports = myRouter;
 
@@ -47,6 +49,8 @@ function myRouter(app) {
 	api.get('/api/rooms/:rid/users', getRoomUsers());
 	api.put('/api/rooms/:rid/users/:uid', enterRoom());
 	api.del('/api/rooms/:rid/users/:uid', exitRoom());
+	api.put('/api/users/:to/pokes/:from', createPoke());
+	api.del('/api/users/:to/pokes/:from', cancelPoke());
 
 	app.use(api.routes())
 	app.use(api.allowedMethods());
