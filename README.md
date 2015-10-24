@@ -16,6 +16,7 @@ Team repo
 	- `/users/:id/pokes`      GET check who has poked me
 	- `/rooms`                GET list all rooms
 	- `/rooms`                POST create a new room
+	- `/rooms/:id`            PUT update room info
 	- `/rooms/:id`            GET room info
 	- `/rooms/:id/users`      GET room user list
 	- `/rooms/:id/users/:id`  PUT enter room
@@ -41,9 +42,17 @@ Team repo
 
 many to many relations
 
-- `mid`
+- `mid` (not currently used)
 - user id (`uid`)
 - room id (`rid`)
+
+## pokes
+
+many to many relations
+
+- `pid` (not currently used)
+- user id (`from`)
+- user id (`to`)
 
 ## json response object
 
