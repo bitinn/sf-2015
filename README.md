@@ -18,20 +18,21 @@ Team repo
 
 ## User
 
-- name
-- title
-- additional info
-- location
-- id
+- `name`
+- `title`
+- additional info (`info`)
+- `location`
+- `uid`
 
 ## Room
 
-- id
-- code
+- `rid`
+- `code`
 
 ## Room / User
 
-- many to many
-- id
-- user id
-- room id
+many to many relations
+
+- `mid`
+- user id (`uid`)
+- room id (`rid`)
