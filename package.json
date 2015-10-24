@@ -1,7 +1,7 @@
 {
-  "name": "mai-boilerplate",
+  "name": "hb",
   "version": "1.0.0",
-  "description": "koa boilerplate for mai3.me",
+  "description": "huge banana",
   "main": "index.js",
   "scripts": {
     "test": "mocha tests/",
