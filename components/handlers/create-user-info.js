@@ -25,11 +25,11 @@ function *middleware(next) {
 
 	var body = this.request.body;
 
-	console.dir(body);
-	if(body.uid == undefined || body == null){
-		console.log("body is null.");
-		var result = {ok:"0", msg: "invalid request"};
-		this.body = result;
+	if(!body || !body.uid){
+		this.body = {
+			code: 400,
+			message: "Invalid request",
+		};
 		return;
 	}
 
@@ -37,23 +37,34 @@ function *middleware(next) {
 		uid: body.uid
 	});
 
-	console.log("check before create user info: " + profile);
-	console.dir(profile);
-
-
-	if(profile == null || profile.uid == null){
-		var result = yield User.insert({
-			  uid: body.uid
-			, name: body.name
-			, title: body.title
-			, info: body.info
-			, location: body.location
-			, image: body.image
-		});
-
-		console.log("create user info: " + result);
-	}else{
-		var result = {ok:"0", msg: "user is exist"};
+	if(profile){
+		this.body = {
+			code: 409,
+			message: "User is already exist.",
+		};
+		return;
 	}
-	this.body = result;
+
+	var result = yield User.insert({
+		  uid: body.uid
+		, name: body.name
+		, title: body.title
+		, info: body.info
+		, location: body.location
+		, image: body.image
+	});
+
+	if(!result || !result.ok || result.ok !== 1){
+		this.body = {
+			code: 500,
+			message: "DB error.",
+		};
+		return;
+	}
+
+	this.body = {
+		code: 200,
+		message: "",
+		data : body
+	};
 };
