@@ -30,14 +30,6 @@ function *middleware(next) {
 		return p.from;
 	});
 
-	if (!profile_list){
-		this.status = 404;
-		this.body = {
-		code:404
-		,messge:"user not find"
-		};
-		return;
-	}
 	var Users = db.col('users');
 	var user_list = yield Users.where('uid').in(profile_list);
 
