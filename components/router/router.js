@@ -9,6 +9,11 @@ var api = require('koa-router')();
 
 var createUserInfo = require('../handlers/create-user-info');
 var getUserInfo = require('../handlers/get-user-info');
+var getRoomInfo = require('../handlers/get-room-info');
+var getRoomUsers = require('../handlers/get-room-users');
+var verifyRoomCode = require('../handlers/verify-room-code');
+var enterRoom = require('../handlers/enter-room');
+var exitRoom = require('../handlers/exit-room');
 
 module.exports = myRouter;
 
@@ -27,12 +32,13 @@ function myRouter(app) {
 		this.body = 'hello world';
 	});
 
-	api.get('/api', function *() {
-		this.body = 'hello world2';
-	});
-
-	api.get('/api/users/:id', getUserInfo());
 	api.post('/api/users', createUserInfo());
+	api.get('/api/users/:uid', getUserInfo());
+	api.get('/api/rooms/:rid', getRoomInfo());
+	api.post('/api/rooms/:rid/verify', verifyRoomCode());
+	api.get('/api/rooms/:rid/users', getRoomUsers());
+	api.put('/api/rooms/:rid/users/:uid', enterRoom());
+	api.del('/api/rooms/:rid/users/:uid', exitRoom());
 
 	app.use(api.routes())
 	app.use(api.allowedMethods());

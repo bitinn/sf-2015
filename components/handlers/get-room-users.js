@@ -1,6 +1,6 @@
 
 /**
- * get-room-info.js
+ * get-room-users.js
  *
  * Return room info
  */
@@ -20,26 +20,26 @@ function *middleware(next) {
 	yield next;
 
 	var db = this.db;
-	var Room = db.col('rooms');
+	var Member = db.col('members');
+	var User = db.col('users');
 
-	var profile = yield Room.findOne({
+	var ids = yield Member.find({
 		rid: this.params.rid
 	});
 
-	if (!profile) {
-		this.status = 404;
-		this.body = {
-			code: 404
-			, message: 'room not found'
-		};
-		return;
-	}
+	ids = ids.map(function (m) {
+		return m.uid;
+	});
 
-	delete profile['_id'];
-	delete profile.code;
+	var users = yield User.where('uid').in(ids);
+
+	users = users.map(function (u) {
+		delete u['_id'];
+		return u;
+	});
 
 	this.body = {
 		code: 200
-		, data: profile
+		, data: users
 	};
 };
