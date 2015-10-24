@@ -10,6 +10,12 @@ Team repo
 	- `/users/:id`            GET user info
 	- `/users`                POST create user
 	- `/users/:id`            PUT update user
+	- `/users/:id/pokes/:id`  PUT poke user
+	- `/users/:id/pokes/:id`  DELETE cancel poke
+	- `/users/:id/pokes/:id`  GET check poke status
+	- `/users/:id/pokes`      GET check who has poked me
+	- `/rooms`                GET list all rooms
+	- `/rooms`                POST create a new room
 	- `/rooms/:id`            GET room info
 	- `/rooms/:id/users`      GET room user list
 	- `/rooms/:id/users/:id`  PUT enter room
