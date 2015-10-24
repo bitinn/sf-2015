@@ -24,6 +24,7 @@ Team repo
 - additional info (`info`)
 - `location`
 - `uid`
+- `image`
 
 ## Room
 
