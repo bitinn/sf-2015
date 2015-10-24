@@ -9,6 +9,7 @@ var api = require('koa-router')();
 
 var getUserInfo = require('../handlers/get-user-info');
 var getRoomInfo = require('../handlers/get-room-info');
+var getRoomUsers = require('../handlers/get-room-users');
 var enterRoom = require('../handlers/enter-room');
 var exitRoom = require('../handlers/exit-room');
 
@@ -35,6 +36,7 @@ function myRouter(app) {
 
 	api.get('/api/users/:uid', getUserInfo());
 	api.get('/api/rooms/:rid', getRoomInfo());
+	api.get('/api/rooms/:rid/users', getRoomUsers());
 	api.put('/api/rooms/:rid/users/:uid', enterRoom());
 	api.del('/api/rooms/:rid/users/:uid', exitRoom());
 
