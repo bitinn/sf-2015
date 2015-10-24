@@ -16,6 +16,7 @@ Team repo
 	- `/users/:id/pokes`      GET check who has poked me
 	- `/rooms`                GET list all rooms
 	- `/rooms`                POST create a new room
+	- `/rooms/:id`            PUT update room info
 	- `/rooms/:id`            GET room info
 	- `/rooms/:id/users`      GET room user list
 	- `/rooms/:id/users/:id`  PUT enter room
