@@ -38,3 +38,13 @@ many to many relations
 - `mid`
 - user id (`uid`)
 - room id (`rid`)
+
+## json response object
+
+```
+{
+	code: xxx                // eg. 200
+	, message: 'some string' // eg. incorrect user id
+	, data: object           // eg. actual response object/array
+}
+```
