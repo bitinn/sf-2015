@@ -1,8 +1,8 @@
 
 /**
- * update-user-info.js
+ * update-room.js
  *
- * Return user info
+ * Update a new room
  */
 
 module.exports = factory;
@@ -20,33 +20,33 @@ function *middleware(next) {
 	yield next;
 
 	var db = this.db;
-	var User = db.col('users');
+	var Room = db.col('rooms');
 
-	var profile = yield User.findOne({
-		uid: this.params.uid
+	var profile = yield Room.findOne({
+		rid: this.params.rid
 	});
 
 	if (!profile) {
 		this.status = 404;
 		this.body = {
 			code: 404
-			, message: 'user not found'
+			, message: 'room not found'
 		};
 		return;
 	}
 
-	delete this.request.body.uid;
+	yield Room.update({
+		rid: this.params.rid
+	}, {
+		code: this.request.body.code
+	});
 
-	yield User.update({
-		uid: this.params.uid
-	}, this.request.body);
-
-	var new_profile = yield User.findOne({
-		uid: this.params.uid
+	profile = yield Room.findOne({
+		rid: this.params.rid
 	});
 
 	this.body = {
 		code: 200
-		, data: new_profile
+		, data: profile
 	};
 };

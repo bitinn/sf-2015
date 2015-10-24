@@ -17,6 +17,7 @@ var enterRoom = require('../handlers/enter-room');
 var exitRoom = require('../handlers/exit-room');
 var getRooms = require('../handlers/get-rooms');
 var createRoom = require('../handlers/create-room');
+var updateRoom = require('../handlers/update-room');
 
 module.exports = myRouter;
 
@@ -41,6 +42,7 @@ function myRouter(app) {
 	api.get('/api/rooms', getRooms());
 	api.post('/api/rooms', createRoom());
 	api.get('/api/rooms/:rid', getRoomInfo());
+	api.put('/api/rooms/:rid', updateRoom());
 	api.post('/api/rooms/:rid/verify', verifyRoomCode());
 	api.get('/api/rooms/:rid/users', getRoomUsers());
 	api.put('/api/rooms/:rid/users/:uid', enterRoom());

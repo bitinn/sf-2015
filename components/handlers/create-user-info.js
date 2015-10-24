@@ -25,11 +25,11 @@ function *middleware(next) {
 
 	var body = this.request.body;
 
-	if(!body || !body.uid){
+	if (!body || !body.uid) {
 		this.status = 400;
 		this.body = {
-			code: 400,
-			message: "Invalid request",
+			code: 400
+			, message: 'request invalid',
 		};
 		return;
 	}
@@ -38,17 +38,17 @@ function *middleware(next) {
 		uid: body.uid
 	});
 
-	if(profile){
+	if (profile) {
 		this.status = 409;
 		this.body = {
-			code: 409,
-			message: "User is already exist.",
+			code: 409
+			, message: 'user already exists',
 		};
 		return;
 	}
 
 	var result = yield User.insert({
-		  uid: body.uid
+		uid: body.uid
 		, name: body.name
 		, title: body.title
 		, info: body.info
@@ -57,11 +57,11 @@ function *middleware(next) {
 	});
 
 	var new_profile = yield User.findOne({
-		  uid: body.uid
+		uid: body.uid
 	});
 
 	this.body = {
-		code: 200,
-		data : new_profile
+		code: 200
+		, data: new_profile
 	};
 };
