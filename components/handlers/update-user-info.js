@@ -36,9 +36,13 @@ function *middleware(next) {
 	}
 
 	delete this.request.body.uid;
-	var new_profile = yield User.update({
+	yield User.update({
 		uid: this.params.uid
 	}, this.request.body); 
+
+	var new_profile = yield User.findOne({
+		uid: this.params.uid
+	});
 
 	this.body = {
 		code:200
