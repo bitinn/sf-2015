@@ -23,7 +23,7 @@ function *middleware(next) {
 	var User = db.col('users');
 
 	var profile = yield User.findOne({
-		uid: this.params.id
+		uid: this.params.uid
 	});
 
 	this.body = profile;

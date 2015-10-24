@@ -17,7 +17,7 @@ Team repo
 	- /rooms/verify         POST verify room code (body contains `code`)
 	- image update ?
 
-## User
+## users
 
 - `name`
 - `title`
@@ -26,15 +26,25 @@ Team repo
 - `uid`
 - `image`
 
-## Room
+## rooms
 
 - `rid`
 - `code`
 
-## Room / User
+## members
 
 many to many relations
 
 - `mid`
 - user id (`uid`)
 - room id (`rid`)
+
+## json response object
+
+```
+{
+	code: xxx                // eg. 200
+	, message: 'some string' // eg. incorrect user id
+	, data: object           // eg. actual response object/array
+}
+```
