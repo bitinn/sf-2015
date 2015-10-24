@@ -41,9 +41,17 @@ Team repo
 
 many to many relations
 
-- `mid`
+- `mid` (not currently used)
 - user id (`uid`)
 - room id (`rid`)
+
+## pokes
+
+many to many relations
+
+- `pid` (not currently used)
+- user id (`from`)
+- user id (`to`)
 
 ## json response object
 
