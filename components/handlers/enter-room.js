@@ -22,6 +22,20 @@ function *middleware(next) {
 	var db = this.db;
 	var Member = db.col('members');
 
+	var exist = yield Member.findOne({
+		rid: this.params.rid
+		, uid: this.params.uid
+	});
+
+	if (exist) {
+		this.status = 409;
+		this.body = {
+			code: 409
+			, message: 'already a member'
+		};
+		return;
+	}
+
 	yield Member.insert({
 		rid: this.params.rid
 		, uid: this.params.uid

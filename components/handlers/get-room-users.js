@@ -27,11 +27,19 @@ function *middleware(next) {
 		rid: this.params.rid
 	});
 
+	ids = ids.map(function (m) {
+		return m.uid;
+	});
+
 	var users = yield User.where('uid').in(ids);
+
+	users = users.map(function (u) {
+		delete u['_id'];
+		return u;
+	});
 
 	this.body = {
 		code: 200
-		, message: ''
 		, data: users
 	};
 };

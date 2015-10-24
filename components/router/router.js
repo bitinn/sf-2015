@@ -32,8 +32,8 @@ function myRouter(app) {
 	});
 
 	api.get('/api/users/:uid', getUserInfo());
-	api.get('/api/rooms/verify', verifyRoomCode());
 	api.get('/api/rooms/:rid', getRoomInfo());
+	api.post('/api/rooms/:rid/verify', verifyRoomCode());
 	api.get('/api/rooms/:rid/users', getRoomUsers());
 	api.put('/api/rooms/:rid/users/:uid', enterRoom());
 	api.del('/api/rooms/:rid/users/:uid', exitRoom());
