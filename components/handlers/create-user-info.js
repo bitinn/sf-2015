@@ -26,6 +26,7 @@ function *middleware(next) {
 	var body = this.request.body;
 
 	if(!body || !body.uid){
+		this.status = 400;
 		this.body = {
 			code: 400,
 			message: "Invalid request",
@@ -38,6 +39,7 @@ function *middleware(next) {
 	});
 
 	if(profile){
+		this.status = 409;
 		this.body = {
 			code: 409,
 			message: "User is already exist.",
@@ -54,17 +56,8 @@ function *middleware(next) {
 		, image: body.image
 	});
 
-	if(!result || !result.ok || result.ok !== 1){
-		this.body = {
-			code: 500,
-			message: "DB error.",
-		};
-		return;
-	}
-
 	this.body = {
 		code: 200,
-		message: "",
 		data : body
 	};
 };
