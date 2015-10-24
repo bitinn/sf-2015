@@ -35,7 +35,7 @@ function *middleware(next) {
 		return;
 	}
 
-	delete this.request.body.uid
+	delete this.request.body.uid;
 	var new_profile = yield User.update({
 		uid: this.params.uid
 	}, this.request.body); 
