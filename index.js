@@ -2,6 +2,7 @@
 var koa = require('koa');
 var logger = require('koa-logger');
 var bodyparser = require('koa-bodyparser');
+var cors = require('koa-cors');
 
 var configFactory = require('./components/config/config');
 var config = configFactory();
@@ -14,6 +15,7 @@ var app = koa();
 
 app.use(logger());
 dev(app);
+app.use(cors());
 app.use(bodyparser());
 app.use(configFactory(true));
 app.use(db());

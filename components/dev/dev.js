@@ -7,7 +7,6 @@
 
 var livereload = require('koa-livereload');
 var asset = require('koa-static');
-var cors = require('koa-cors');
 
 module.exports = factory;
 
@@ -22,8 +21,6 @@ function factory(app) {
 		app.use(livereload({
 			port: 30001
 		}));
-
-		app.use(cors());
 	}
 
 	if (app.env === 'dev' || app.env === 'local') {
