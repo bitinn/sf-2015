@@ -30,10 +30,6 @@ function myRouter(app) {
 		this.body = 'hello world';
 	});
 
-	api.get('/api', function *() {
-		this.body = 'hello world2';
-	});
-
 	api.get('/api/users/:uid', getUserInfo());
 	api.get('/api/rooms/:rid', getRoomInfo());
 	api.get('/api/rooms/:rid/users', getRoomUsers());
