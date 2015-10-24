@@ -23,20 +23,20 @@ function *middleware(next) {
 	var db = this.db;
 	var User = db.col('users');
 
+	//console.dir(this);
+	console.log("------------");
+	console.dir(this.request.body);
 	var profile = yield User.findOne({
 		uid: this.params.id
 	});
+	console.log("------------");
 
 	console.log("check before create user info: " + profile);
+	console.dir(profile);
 
-	var result;
 
-	if(profile != null){
-		result.ok = 0;
-		result.msg = "user is exist.";
-	}else{
-
-		result = yield User.insert({
+	if(profile.uid == null || profile.uid == "null" || profile.uid == "undefined"){
+		var result = yield User.insert({
 			  uid: this.params.id
 			, name: this.params.name
 			, title: this.params.title
@@ -46,6 +46,8 @@ function *middleware(next) {
 		});
 
 		console.log("create user info: " + result);
+	}else{
+		var result = {ok:"0", msg: "user is exist"};
 	}
 	this.body = result;
 };
