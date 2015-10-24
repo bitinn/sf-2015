@@ -6,15 +6,15 @@ Team repo
 
 ## API list
 
-- /api
-	- /users/:id            GET user info
-	- /users                POST create user
-	- /users                PUT update user
-	- /rooms/:id            GET room info
-	- /rooms/:id/users      GET room user list
-	- /rooms/:id/users/:id  PUT enter room
-	- /rooms/:id/users/:id  DELETE exit room
-	- /rooms/verify         POST verify room code (body contains `code`)
+- `/api`
+	- `/users/:id`            GET user info
+	- `/users`                POST create user
+	- `/users/:id`            PUT update user
+	- `/rooms/:id`            GET room info
+	- `/rooms/:id/users`      GET room user list
+	- `/rooms/:id/users/:id`  PUT enter room
+	- `/rooms/:id/users/:id`  DELETE exit room
+	- `/rooms/:id/verify`     POST verify room code (request body contains `code`)
 	- image update ?
 
 ## users

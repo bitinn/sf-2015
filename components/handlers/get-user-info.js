@@ -26,9 +26,19 @@ function *middleware(next) {
 		uid: this.params.uid
 	});
 
+	if (!profile) {
+		this.status = 404;
+		this.body = {
+			code: 404
+			, message: 'user not found'
+		};
+		return;
+	}
+
+	delete profile['_id'];
+
 	this.body = {
 		code: 200
-		, message: ''
 		, data: profile
 	};
 };

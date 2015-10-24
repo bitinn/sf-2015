@@ -26,9 +26,20 @@ function *middleware(next) {
 		rid: this.params.rid
 	});
 
+	if (!profile) {
+		this.status = 404;
+		this.body = {
+			code: 404
+			, message: 'room not found'
+		};
+		return;
+	}
+
+	delete profile['_id'];
+	delete profile.code;
+
 	this.body = {
 		code: 200
-		, message: ''
 		, data: profile
 	};
 };
