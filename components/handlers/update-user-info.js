@@ -27,6 +27,7 @@ function *middleware(next) {
 	});
 
 	if (!profile){
+		this.status = 404;
 		this.body = {
 		code:404
 		,messge:"user not find"
@@ -34,9 +35,14 @@ function *middleware(next) {
 		return;
 	}
 
-	var new_profile = yield User.update({
+	delete this.request.body.uid;
+	yield User.update({
 		uid: this.params.uid
 	}, this.request.body); 
+
+	var new_profile = yield User.findOne({
+		uid: this.params.uid
+	});
 
 	this.body = {
 		code:200
