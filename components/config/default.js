@@ -16,7 +16,7 @@ module.exports = {
 		, pass: ''
 		, userdb: ''
 		, replSet: ''
-		, database: 'mai'
+		, database: 'hb'
 		, w: 1
 	}
 	, redis: {
