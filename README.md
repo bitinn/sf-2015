@@ -7,21 +7,21 @@ Team repo
 ## API list
 
 - `/api`
-	- `/users/:id`            GET user info
-	- `/users`                POST create user
-	- `/users/:id`            PUT update user
-	- `/users/:id/pokes/:id`  PUT poke user
-	- `/users/:id/pokes/:id`  DELETE cancel poke
-	- `/users/:id/pokes/:id`  GET check poke status
-	- `/users/:id/pokes`      GET check who has poked me
-	- `/rooms`                GET list all rooms
-	- `/rooms`                POST create a new room
-	- `/rooms/:id`            PUT update room info
-	- `/rooms/:id`            GET room info
-	- `/rooms/:id/users`      GET room user list
-	- `/rooms/:id/users/:id`  PUT enter room
-	- `/rooms/:id/users/:id`  DELETE exit room
-	- `/rooms/:id/verify`     POST verify room code (request body contains `code`)
+	- `/users/:id`              GET user info
+	- `/users`                  POST create user
+	- `/users/:id`              PUT update user
+	- `/users/:to/pokes/:from`  PUT poke user
+	- `/users/:to/pokes/:from`  DELETE cancel poke
+	- `/users/:to/pokes/:from`  GET check poke status
+	- `/users/:to/pokes`        GET check who has poked me
+	- `/rooms`                  GET list all rooms
+	- `/rooms`                  POST create a new room
+	- `/rooms/:id`              PUT update room info
+	- `/rooms/:id`              GET room info
+	- `/rooms/:id/users`        GET room user list (accepts `user` filter)
+	- `/rooms/:id/users/:id`    PUT enter room
+	- `/rooms/:id/users/:id`    DELETE exit room
+	- `/rooms/:id/verify`       POST verify room code (request body contains `code`)
 	- image update ?
 
 ## users

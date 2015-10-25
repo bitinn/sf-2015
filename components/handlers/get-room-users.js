@@ -23,6 +23,8 @@ function *middleware(next) {
 	var Member = db.col('members');
 	var User = db.col('users');
 
+	var query = this.request.query;
+
 	var ids = yield Member.find({
 		rid: this.params.rid
 	});
@@ -33,13 +35,18 @@ function *middleware(next) {
 
 	var users = yield User.where('uid').in(ids);
 
-	users = users.map(function (u) {
+	var filtered = [];
+	users.forEach(function (u) {
+		if (u.uid === query.user) {
+			return;
+		}
 		delete u['_id'];
-		return u;
+
+		filtered.push(u);
 	});
 
 	this.body = {
 		code: 200
-		, data: users
+		, data: filtered
 	};
 };
